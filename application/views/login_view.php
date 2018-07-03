@@ -1,29 +1,22 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <a href="../../index2.html">SIMRS GHRASIA</a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
-      <p class="login-box-msg">Sign in to start your session</p>
+      <p class="login-box-msg">Login administrator</p>
 
-      <form action="../../index2.html" method="post">
+      <form action="<?php echo site_url('Poli')?>" method="post">
         <div class="form-group has-feedback">
-          <input type="email" class="form-control" placeholder="Email">
-          <span class="fa fa-envelope form-control-feedback"></span>
+          <input type="text" class="form-control" placeholder="Username">
         </div>
         <div class="form-group has-feedback">
           <input type="password" class="form-control" placeholder="Password">
-          <span class="fa fa-lock form-control-feedback"></span>
         </div>
         <div class="row">
           <div class="col-8">
-            <div class="checkbox icheck">
-              <label>
-                <input type="checkbox"> Remember Me
-              </label>
-            </div>
           </div>
           <!-- /.col -->
           <div class="col-4">
@@ -32,13 +25,6 @@
           <!-- /.col -->
         </div>
       </form>
-
-      <p class="mb-1">
-        <a href="#">I forgot my password</a>
-      </p>
-      <p class="mb-0">
-        <a href="register.html" class="text-center">Register a new membership</a>
-      </p>
     </div>
     <!-- /.login-card-body -->
   </div>
