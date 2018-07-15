@@ -35,40 +35,45 @@
         </div>
         <div class="card-body">
         <div class="pull-right">
-          <form>
+          <form action="<?php echo site_url('Poli/cariPoli')?>" method="post">
             <div class="form=group">
-              <input type="text" class="form-control" placeholder="Masukan data poli">
+              <input type="text" class="form-control" name="filter" placeholder="Masukan nama poli">
             </div>
           </form>
         </div>
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nomor Poli</th>
+              <th scope="col">No</th>
               <th scope="col">Nama Poli</th>
-              <th scope="col">Nama Petugas</th>
               <th scope="col">Kategori Poli</th>
-              <th>Action</th>
+              <th scope="col">Nama Petugas Poli</th>
             </tr>
           </thead>
             <tbody>
+            <?php if(empty($poli)){ ?>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>
-                  <a class="btn btn-success btn-sm"><i class="fa fa-pencil"> Edit </i></a>
-                  <a class="btn btn-info btn-sm"><i class="fa fa-eye"> Lihat Detail </i></a>
-                  <a class="btn btn-danger btn-sm"><i class="fa fa-trash"> Hapus </i></a>
-                </td>
+                <td colspan="6">Data tidak ditemukan</td>
               </tr>
+                <?php }else{
+                  $no =  $this->uri->segment('3') + 1;
+                  foreach($poli as $data){ $no;?>
+                <tr height="50px">
+                  <td><?php echo $no++?></td>
+                  <td><?php echo $data->nama_poli?></td>
+                  <td><?php echo $data->kategori_poli?></td>
+                  <td><?php echo $data->nama_petugas_poli?></td>
+                <?php }}?>
+
             </tbody>
           </table>
         </div>
         <!-- /.card-body -->
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <?php echo $this->pagination->create_links(); ?>
+          </div>
+        </div>
       </div>
       <!-- /.card -->
 

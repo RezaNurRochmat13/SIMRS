@@ -35,12 +35,14 @@
         </div>
         <div class="card-body">
         <div class="pull-right">
-          <form>
+          <form action="<?php echo site_url('Transaksi_Poli/cariTransaksi')?>">
             <div class="form=group">
-              <input type="text" class="form-control" placeholder="Masukan data transaksi">
+              <input type="text" class="form-control" name="keywords" placeholder="Masukan nama pasien">
             </div>
           </form>
         </div>
+        <a class="btn btn-success" href="<?php echo site_url('Transaksi_Poli/createTransaksi')?>">Tambah Data Tranaksi</a>
+        <div class="table-responsive">
         <table class="table table-striped">
           <thead>
             <tr>
@@ -49,30 +51,63 @@
               <th scope="col">Nama Pasien</th>
               <th scope="col">Alamat Pasien</th>
               <th scope="col">Tanggal Lahir Pasien</th>
-              <th scope="col">Golongan Darah Pasien</th>
-              <th scope="col">Pekerjaan Pasien</th>
+              <th>Nomor Antrian</th>
+              <th>Tanggal Masuk Berkas</th>
+              <th>Tanggal Kembali Berkas</th>
+              <th>Nama Poli</th>
+              <th>Kategori Poli</th>
+              <th>Status Berkas</th>
               <th>Action</th>
             </tr>
           </thead>
-            <tbody>
+          <tbody>
+            <?php if(empty($transaksi)){ ?>
               <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-                <td width="300px">
-                  <a class="btn btn-success btn-sm"><i class="fa fa-pencil"> Edit </i></a>
-                  <a class="btn btn-info btn-sm"><i class="fa fa-eye"> Lihat Detail </i></a>
-                  <a class="btn btn-danger btn-sm"><i class="fa fa-trash"> Hapus </i></a>
-                </td>
+                <td colspan="6">Data tidak ditemukan</td>
               </tr>
+                <?php }else{
+                  $no =  $this->uri->segment('3') + 1;
+                  foreach($transaksi as $data){ $no;?>
+                <tr height="50px">
+                  <td><?php echo $no++?></td>
+                  <td><?php echo $data->no_rekam_medis_pasien?></td>
+                  <td><?php echo $data->nama_pasien?></td>
+                  <td><?php echo $data->alamat_pasien?></td>
+                  <td><?php echo date("d F Y", strtotime($data->tanggal_lahir_pasien))?></td>
+                  <td><?php echo $data->nomor_antrian?></td>
+                  <td><?php echo date("d F Y", strtotime($data->tanggal_masuk_berkas))?></td>
+                  <td>
+                    <?php if ($data->tanggal_keluar_berkas == NULL) {?>
+                      <?php echo "Belum dikembalikan"; ?>
+                    <?php } else {?>
+                      <?php echo date("d F Y", strtotime($data->tanggal_keluar_berkas))?>
+                    <?php }?>
+                  </td>
+                  <td><?php echo $data->nama_poli?></td>
+                  <td><?php echo $data->kategori_poli?></td>
+                  <td><?php
+                    if ($data->status_transaksi == 1) {?>
+                    <button class="btn btn-warning">Dipinjam</button>
+                  <?php } else {?>
+                    <button class="btn btn-success">Dikembalikan</button>
+                  <?php }?>
+                  </td>
+                  <td>
+                    <?php echo anchor('Transaksi_Poli/editTransaksi/'.$data->id_transaksi_poli,'<button type="button" class="btn btn-info"><i class="glyphicon glyphicon-pencil"></i>Update Status Berkas</button>');?>
+                  </td>
+                </tr>
+                <?php }}?>
+
             </tbody>
           </table>
+          </div>
         </div>
         <!-- /.card-body -->
+        <div class="row">
+                        <div class="col-md-12 text-center">
+                            <?php echo $this->pagination->create_links(); ?>
+                        </div>
+                    </div>
       </div>
       <!-- /.card -->
 

@@ -70,7 +70,7 @@
                with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview">
             <a href="<?php echo site_url('Pasien')?>" class="nav-link">
-              <i class="nav-icon fa fa-dashboard"></i>
+              <i class="nav-icon fa fa-user"></i>
               <p>
                 Data Pasien
               </p>
@@ -78,7 +78,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="<?php echo site_url('Poli')?>" class="nav-link">
-              <i class="nav-icon fa fa-dashboard"></i>
+              <i class="nav-icon fa fa-home"></i>
               <p>
                 Data Poli
               </p>
@@ -86,7 +86,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="<?php echo site_url('Transaksi_Poli')?>" class="nav-link">
-              <i class="nav-icon fa fa-dashboard"></i>
+              <i class="nav-icon fa fa-shopping-cart"></i>
               <p>
                 Tracking Poli
               </p>
