@@ -9,6 +9,7 @@ class Pasien extends CI_Controller {
         $this->load->library('pagination');
         $this->load->library('form_validation');
         $this->load->model('Pasien_Model');
+        $this->load->library('session');
     }
 
     public function index(){
@@ -49,6 +50,19 @@ class Pasien extends CI_Controller {
         $this->load->view('include/header');
         $this->load->view('pasien_view', $data);
         $this->load->view('include/footer');
-	}
+    }
+    
+    public function createPasien() {
+        $this->load->view('include/header');
+        $this->load->view('pasien_form_tambah');
+        $this->load->view('include/footer');
+    }
+
+    public function createDataPasien() {
+        $this->Pasien_Model->createData();
+        $sukses="<div class='alert alert-success'>Data anda berhasil masuk</div>";
+		$this->session->set_flashdata("sukses",$sukses);
+        redirect("Pasien/index");
+    }
 
 }

@@ -6,6 +6,7 @@ class Transaksi_Poli extends CI_Controller {
         $this->load->helper(array('url','form'));
         $this->load->model('Transaksi_Model');
         $this->load->library('pagination');
+        $this->load->library('session');
         $this->load->database();
     }
 
@@ -13,7 +14,7 @@ class Transaksi_Poli extends CI_Controller {
         $jumlah_data = $this->Transaksi_Model->jumlah_data();
 	    $config['base_url'] = base_url().'index.php/Transaksi_Poli/index/';
 	    $config['total_rows'] = $jumlah_data;
-	    $config['per_page'] = 2;
+	    $config['per_page'] = 5;
 	    $from = $this->uri->segment(3);
 	    //Konfigurasi pagination bootrap
         $config['first_link']       = 'First';
@@ -44,10 +45,10 @@ class Transaksi_Poli extends CI_Controller {
     public function cariTransaksi(){
 		$keywords=$this->input->post('keywords');
         $data['transaksi'] = $this->Transaksi_Model->cariTransaksi($keywords);
-        var_dump($data);
-        // $this->load->view('include/header');
-        // $this->load->view('transaksi_poli_view', $data);
-        // $this->load->view('include/footer');
+        // var_dump($data);
+        $this->load->view('include/header');
+        $this->load->view('transaksi_poli_view', $data);
+        $this->load->view('include/footer');
     }
     
     public function createTransaksi() {
@@ -60,6 +61,8 @@ class Transaksi_Poli extends CI_Controller {
 
     public function createData() {
         $this->Transaksi_Model->createTransaksi();
+        $sukses="<div class='alert alert-success'>Data anda berhasil masuk</div>";
+		$this->session->set_flashdata("sukses",$sukses);
         redirect("Transaksi_Poli/index");
     }
 
@@ -73,7 +76,7 @@ class Transaksi_Poli extends CI_Controller {
     
     public function updateData(){
         $id_transaksi_poli = $this->input->post('id_transaksi_poli');
-        $tanggal_keluar_berkas = date('Y-m-d', strtotime($this->input->post('tanggal_keluar_berkas')));
+        $tanggal_keluar_berkas = date('Y-m-d');
         $status_transaksi = $this->input->post('status_transaksi');
           $data = array(
           'tanggal_keluar_berkas' => $tanggal_keluar_berkas,
@@ -83,6 +86,8 @@ class Transaksi_Poli extends CI_Controller {
           'id_transaksi_poli' => $id_transaksi_poli
         );
           $this->Transaksi_Model->update_data($where,$data,'transaksi_poli');
+          $ubah="<div class='alert alert-info'>Data anda berhasil diubah</div>";
+		  $this->session->set_flashdata("ubah",$ubah);
           redirect("Transaksi_Poli/index");
       }
 }

@@ -20,6 +20,7 @@
 
     <!-- Main content -->
     <section class="content">
+    <?php echo $this->session->flashdata('sukses')?>
 
       <!-- Default box -->
       <div class="card">
@@ -41,6 +42,7 @@
             </div>
           </form>
         </div>
+        <a class="btn btn-success" href="<?php echo site_url('Pasien/createPasien')?>">Pendaftaran Pasien</a><br/>
         <table class="table table-striped">
           <thead>
             <tr>

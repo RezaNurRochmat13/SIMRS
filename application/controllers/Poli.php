@@ -13,7 +13,7 @@ class Poli extends CI_Controller {
         $jumlah_data = $this->Poli_Model->jumlah_data();
 	    $config['base_url'] = base_url().'index.php/Poli/index/';
 	    $config['total_rows'] = $jumlah_data;
-	    $config['per_page'] = 2;
+	    $config['per_page'] = 5;
 	    $from = $this->uri->segment(3);
 	    //Konfigurasi pagination bootrap
         $config['first_link']       = 'First';

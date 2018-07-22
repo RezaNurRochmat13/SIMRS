@@ -20,6 +20,9 @@
 
     <!-- Main content -->
     <section class="content">
+    <?php echo $this->session->flashdata('sukses')?>
+    <?php echo $this->session->flashdata('ubah')?>
+
 
       <!-- Default box -->
       <div class="card">
@@ -35,13 +38,13 @@
         </div>
         <div class="card-body">
         <div class="pull-right">
-          <form action="<?php echo site_url('Transaksi_Poli/cariTransaksi')?>">
+          <form action="<?php echo site_url('Transaksi_Poli/cariTransaksi')?>" method="POST">
             <div class="form=group">
-              <input type="text" class="form-control" name="keywords" placeholder="Masukan nama pasien">
+              <input type="text" class="form-control" name="keywords" placeholder="Masukan no rekam medis">
             </div>
           </form>
         </div>
-        <a class="btn btn-success" href="<?php echo site_url('Transaksi_Poli/createTransaksi')?>">Tambah Data Tranaksi</a>
+        <a class="btn btn-success" href="<?php echo site_url('Transaksi_Poli/createTransaksi')?>">Peminjaman Berkas</a><br/>
         <div class="table-responsive">
         <table class="table table-striped">
           <thead>
@@ -55,7 +58,7 @@
               <th>Tanggal Masuk Berkas</th>
               <th>Tanggal Kembali Berkas</th>
               <th>Nama Poli</th>
-              <th>Kategori Poli</th>
+              <th>Nama Dokter</th>
               <th>Status Berkas</th>
               <th>Action</th>
             </tr>
@@ -84,7 +87,7 @@
                     <?php }?>
                   </td>
                   <td><?php echo $data->nama_poli?></td>
-                  <td><?php echo $data->kategori_poli?></td>
+                  <td><?php echo $data->nama_petugas_poli?></td>
                   <td><?php
                     if ($data->status_transaksi == 1) {?>
                     <button class="btn btn-warning">Dipinjam</button>
@@ -104,10 +107,10 @@
         </div>
         <!-- /.card-body -->
         <div class="row">
-                        <div class="col-md-12 text-center">
-                            <?php echo $this->pagination->create_links(); ?>
-                        </div>
-                    </div>
+          <div class="col-md-12 text-center">
+            <?php echo $this->pagination->create_links(); ?>
+          </div>
+        </div>
       </div>
       <!-- /.card -->
 

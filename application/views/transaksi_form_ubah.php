@@ -37,12 +37,8 @@
         <form action="<?php echo site_url('Transaksi_Poli/updateData')?>" method="post">
             <?php foreach ($editTransaksi as $data) {?>
             <div class="form-group">
-                <label for="exampleInputEmail1">Tanggal Kembali Berkas</label>
-                <input type="hidden" name="id_transaksi_poli" value="<?php echo $data->id_transaksi_poli ?>">
-                <input type="date" class="form-control" name="tanggal_keluar_berkas">
-            </div>
-            <div class="form-group">
                 <label for="exampleInputEmail1">Status Transaksi</label>
+                <input type="hidden" name="id_transaksi_poli" value="<?php echo $data->id_transaksi_poli ?>">
                 <select class="form-control" name="status_transaksi">
                 <?php
                     if ($data->status_transaksi == 1) {?>

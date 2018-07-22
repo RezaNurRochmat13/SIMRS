@@ -23,9 +23,10 @@ class Transaksi_Model extends CI_Model {
 
 	public function cariTransaksi($keywords){
 		$this->db->select('*');
-		$this->db->where('pasien.id_pasien=transaksi_poli.id_pasien AND poli.id_poli=transaksi_poli.id_poli');
-		$this->db->like('pasien.nama_pasien', $keywords);
-		return $this->db->get('transaksi_poli, poli, pasien')->result();
+		$this->db->join('pasien', 'pasien.id_pasien = transaksi_poli.id_pasien', 'left');
+		$this->db->join('poli', 'poli.id_poli = transaksi_poli.id_poli', 'left');
+		$this->db->like('pasien.no_rekam_medis_pasien', $keywords);
+		return $this->db->get('transaksi_poli')->result();
 	}
 
 	public function getPasien() {
